@@ -3,7 +3,8 @@ import Category from "../models/Category";
 import storageController from "./StorageController";
 
 const categoryController = (function() {
-    const categories = storageController.loadCategories();
+    const categoriesObjects = storageController.loadCategories();
+    const categories = categoriesObjects.map(category => Category.fromJSON(category));
     let currentCategory = categories[0];
 
     function getCategories() {
@@ -12,12 +13,12 @@ const categoryController = (function() {
 
     function addCategory(title) {
         categories.push(new Category(title));
-        storageController.saveCategories();
+        storageController.saveCategories(categories);
     }
 
     function addTodoToCategory(title, description, dueDate, priority, notes, status) {
         currentCategory.todos.push(new Todo(title, description, dueDate, priority, notes, status));
-        storageController.saveCategories();
+        storageController.saveCategories(categories);
     }
 
     function changeCurrentCategory(index) {
