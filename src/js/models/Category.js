@@ -1,11 +1,13 @@
+import Todo from "./Todo";
+
 export default class Category {
     constructor(title) {
         this.title = title;
         this.todos = [];
     }
 
-    addTodo(todo) {
-        this.todos.push(todo);
+    addTodo(title, description, dueDate, priority, notes, status) {
+        this.todos.push(new Todo(title, description, dueDate, priority, notes, status));
     }
 
     deleteTodo(index) {

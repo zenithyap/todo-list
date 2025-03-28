@@ -1,4 +1,3 @@
-import Todo from "../models/Todo";
 import Category from "../models/Category";
 import storageController from "./StorageController";
 
@@ -16,8 +15,18 @@ const categoryController = (function() {
         storageController.saveCategories(categories);
     }
 
+    function deleteCategory(index) {
+        categories.splice(index, 1);
+        storageController.saveCategories(categories);
+    }
+
     function addTodoToCategory(title, description, dueDate, priority, notes, status) {
-        currentCategory.todos.push(new Todo(title, description, dueDate, priority, notes, status));
+        currentCategory.addTodo(title, description, dueDate, priority, notes, status);
+        storageController.saveCategories(categories);
+    }
+
+    function deleteTodoFromCategory(index) {
+        currentCategory.deleteTodo(index);
         storageController.saveCategories(categories);
     }
 
@@ -31,7 +40,11 @@ const categoryController = (function() {
         }
     }
 
-    return { getCategories, addCategory, addTodoToCategory, changeCurrentCategory, logCategories };
+    return { 
+        getCategories, addCategory, deleteCategory, 
+        addTodoToCategory, deleteTodoFromCategory, 
+        changeCurrentCategory, logCategories 
+    };
 })();
 
 export default categoryController;
