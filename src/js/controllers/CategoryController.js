@@ -30,6 +30,11 @@ const categoryController = (function() {
         storageController.saveCategories(categories);
     }
 
+    function editTodoInCategory(index, updatedFields) {
+        currentCategory.editTodo(index, updatedFields);
+        storageController.saveCategories(categories);
+    }
+
     function changeCurrentCategory(index) {
         currentCategory = categories[index];
     }
@@ -42,8 +47,8 @@ const categoryController = (function() {
 
     return { 
         getCategories, addCategory, deleteCategory, 
-        addTodoToCategory, deleteTodoFromCategory, 
-        changeCurrentCategory, logCategories 
+        addTodoToCategory, deleteTodoFromCategory,
+        editTodoInCategory, changeCurrentCategory, logCategories 
     };
 })();
 

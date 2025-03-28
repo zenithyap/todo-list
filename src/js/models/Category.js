@@ -14,6 +14,12 @@ export default class Category {
         this.todos.splice(index, 1);
     }
 
+    editTodo(index, updatedFields) {
+        const todo = Todo.fromJSON(this.todos[index]);
+        todo.edit(updatedFields);
+        this.todos[index] = todo;
+    }
+
     logCategory() {
         console.log(this.title, this.todos);
     }

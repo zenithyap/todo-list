@@ -5,6 +5,7 @@ const logicController = (function() {
     // categoryController.addCategory("New Category");
     // categoryController.deleteCategory(2);
     // categoryController.deleteTodoFromCategory(1);
+    categoryController.editTodoInCategory(0, {title: "editedTitle", priority: "editedPriority"})
     categoryController.logCategories();
 })();
 
