@@ -2,8 +2,16 @@ import Todo from "./Todo";
 
 export default class Category {
     constructor(title) {
-        this.title = title;
+        this._title = title;
         this.todos = [];
+    }
+
+    get title() {
+        return this._title;
+    }
+
+    set title(newTitle) {
+        this._title = newTitle;
     }
 
     addTodo(title, description, dueDate, priority, notes, status) {
@@ -21,7 +29,7 @@ export default class Category {
     }
 
     logCategory() {
-        console.log(this.title, this.todos);
+        console.log(this._title, this.todos);
     }
 
     static fromJSON(json) {

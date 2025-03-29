@@ -46,7 +46,7 @@ const categoryController = (function() {
     }
 
     return { 
-        getCatgory, addCategory, deleteCategory, 
+        getCategories, addCategory, deleteCategory, 
         addTodoToCategory, deleteTodoFromCategory, 
         editTodoInCategory, changeCurrentCategory, logCategories 
     };
