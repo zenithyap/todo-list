@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#main-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 7fr;
+    height: 100vh;
+}
+
+#header {
+    display: flex;
+    background-color: #FFE5F7;
+    align-items: center;
+    padding: 24px;
+    font-size: 2rem;
+    grid-column: 1 / 3;
+}
+
+#sidebar {
+    border: 2px solid blue;
+}
+
+#content {
+    border: 2px solid green;
+}
