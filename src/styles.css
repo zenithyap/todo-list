@@ -25,6 +25,10 @@
 
 #sidebar {
     border: 2px solid blue;
+
+    .title {
+        display: flex;
+    }
 }
 
 #content {
