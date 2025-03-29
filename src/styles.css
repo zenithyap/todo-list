@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+:root {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 #main-container {
     display: grid;
     grid-template-columns: 1fr 4fr;
@@ -17,6 +21,7 @@
     align-items: center;
     padding: 24px;
     font-size: 2rem;
+    font-weight: bold;
     grid-column: 1 / 3;
 }
 
