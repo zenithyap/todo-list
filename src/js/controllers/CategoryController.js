@@ -6,6 +6,10 @@ const categoryController = (function() {
     const categories = categoriesObjects.map(category => Category.fromJSON(category));
     let currentCategory = categories[0];
 
+    function getCategories() {
+        return categories;
+    }
+
     function addCategory(title) {
         categories.push(new Category(title));
         storageController.saveCategories(categories);
@@ -42,9 +46,9 @@ const categoryController = (function() {
     }
 
     return { 
-        addCategory, deleteCategory, addTodoToCategory, 
-        deleteTodoFromCategory, editTodoInCategory, 
-        changeCurrentCategory, logCategories 
+        getCatgory, addCategory, deleteCategory, 
+        addTodoToCategory, deleteTodoFromCategory, 
+        editTodoInCategory, changeCurrentCategory, logCategories 
     };
 })();
 
