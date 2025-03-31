@@ -8,6 +8,10 @@ const DomController = (function() {
         const projectTitle = document.querySelector("#project-title");
         const sidebarContent = document.querySelector("#sidebar-content");
 
+        const addTodoButton = document.querySelector("#add-todo-btn");
+        const addTodoDialog = document.querySelector("#add-todo-dialog");
+        const addTodoForm = document.querySelector("#add-todo-form");
+
         addCategoryButton.addEventListener("click", () => {
             addCategoryDialog.showModal();
         });
@@ -29,6 +33,17 @@ const DomController = (function() {
             if (event.target.textContent === "Delete") {
                 categoryController.deleteCategory(event.target.dataset.index);
                 renderSidebar();
+            }
+        });
+
+        addTodoButton.addEventListener("click", () => {
+            addTodoDialog.showModal();
+        });
+
+        addTodoDialog.addEventListener("click", (event) => {
+            if (event.target === addTodoDialog) {
+                event.preventDefault();
+                addTodoDialog.close();
             }
         });
     }
