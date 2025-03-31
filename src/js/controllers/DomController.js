@@ -6,6 +6,7 @@ const DomController = (function() {
         const addCategoryDialog = document.querySelector("#add-project-dialog");
         const addCategoryForm = document.querySelector("#add-project-form");
         const projectTitle = document.querySelector("#project-title");
+        const sidebarContent = document.querySelector("#sidebar-content");
 
         addCategoryButton.addEventListener("click", () => {
             addCategoryDialog.showModal();
@@ -23,6 +24,13 @@ const DomController = (function() {
             categoryController.addCategory(projectTitle.value);
             renderSidebar();
         });
+
+        sidebarContent.addEventListener("click", (event) => {
+            if (event.target.textContent === "Delete") {
+                categoryController.deleteCategory(event.target.dataset.index);
+                renderSidebar();
+            }
+        });
     }
 
     function renderSidebar() {
@@ -30,10 +38,16 @@ const DomController = (function() {
         const sidebarContent = document.querySelector("#sidebar-content");
         sidebarContent.textContent = "";
 
-        categories.map(category => {
+        categories.map((category, index) => {
             const categoryButton = document.createElement("button");
+            const deleteCategoryButton = document.createElement("button");
             categoryButton.textContent = category.title;
+            deleteCategoryButton.textContent = "Delete";
+            deleteCategoryButton.dataset.index = index;
             sidebarContent.appendChild(categoryButton);
+            if (index !== 0) {
+                sidebarContent.appendChild(deleteCategoryButton);
+            } 
         });
     }
 
