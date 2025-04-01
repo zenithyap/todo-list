@@ -3,7 +3,7 @@ import Todo from "./Todo";
 export default class Category {
     constructor(title) {
         this._title = title;
-        this.todos = [];
+        this._todos = [];
     }
 
     get title() {
@@ -14,22 +14,30 @@ export default class Category {
         this._title = newTitle;
     }
 
+    get todos() {
+        return this._todos;
+    }
+
+    set todos(newTodos) {
+        this._todos = newTodos;
+    }
+
     addTodo(title, description, dueDate, priority, notes, status) {
-        this.todos.push(new Todo(title, description, dueDate, priority, notes, status));
+        this._todos.push(new Todo(title, description, dueDate, priority, notes, status));
     }
 
     deleteTodo(index) {
-        this.todos.splice(index, 1);
+        this._todos.splice(index, 1);
     }
 
     editTodo(index, updatedFields) {
-        const todo = Todo.fromJSON(this.todos[index]);
+        const todo = Todo.fromJSON(this._todos[index]);
         todo.edit(updatedFields);
-        this.todos[index] = todo;
+        this._todos[index] = todo;
     }
 
     logCategory() {
-        console.log(this._title, this.todos);
+        console.log(this._title, this._todos);
     }
 
     static fromJSON(json) {

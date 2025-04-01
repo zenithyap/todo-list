@@ -11,6 +11,12 @@ const DomController = (function() {
         const addTodoButton = document.querySelector("#add-todo-btn");
         const addTodoDialog = document.querySelector("#add-todo-dialog");
         const addTodoForm = document.querySelector("#add-todo-form");
+        const todoTitle = document.querySelector("#todo-title");
+        const todoDescription = document.querySelector("#todo-description");
+        const todoDueDate = document.querySelector("#todo-due-date");
+        const todoPriority = document.querySelector("#todo-priority");
+        const todoNotes = document.querySelector("#todo-notes");
+        const todoStatus = document.querySelector("#todo-status");
 
         addCategoryButton.addEventListener("click", () => {
             addCategoryDialog.showModal();
@@ -46,6 +52,15 @@ const DomController = (function() {
                 addTodoDialog.close();
             }
         });
+
+        addTodoForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            categoryController.addTodoToCategory(
+                todoTitle.value, todoDescription.value, todoDueDate.value,
+                todoPriority.value, todoNotes.value, todoStatus.value
+            );
+            renderContent();
+        });
     }
 
     function renderSidebar() {
@@ -67,10 +82,38 @@ const DomController = (function() {
     }
 
     function renderContent() {
+        const todos = categoryController.getCurrentCategoryTodos();
+        const todoContainer = document.querySelector("#todo-container");
+        todoContainer.textContent = "";
 
+        todos.map(todo => {
+            const title = document.createElement("h1");
+            const description = document.createElement("p");
+            const dueDate = document.createElement("p");
+            const priority = document.createElement("p");
+            const notes = document.createElement("p");
+            const status = document.createElement("p");
+            const todoCard = document.createElement("div");
+
+            title.textContent = todo.title;
+            description.textContent = todo.description;
+            dueDate.textContent = todo.dueDate;
+            priority.textContent = todo.priority;
+            notes.textContent = todo.notes;
+            status.textContent = todo.status;
+
+            todoCard.appendChild(title);
+            todoCard.appendChild(description);
+            todoCard.appendChild(dueDate);
+            todoCard.appendChild(priority);
+            todoCard.appendChild(notes);
+            todoCard.appendChild(status);
+
+            todoContainer.appendChild(todoCard);
+        });
     }
 
-    return { renderSidebar, initialiseEventListeners };
+    return { renderSidebar, renderContent, initialiseEventListeners };
 })();
 
 export default DomController;

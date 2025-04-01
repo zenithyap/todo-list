@@ -39,6 +39,10 @@ const categoryController = (function() {
         currentCategory = categories[index];
     }
 
+    function getCurrentCategoryTodos() {
+        return currentCategory.todos
+    }
+
     function logCategories() {
         for (const category of categories) {
             category.logCategory();
@@ -47,8 +51,8 @@ const categoryController = (function() {
 
     return { 
         getCategories, addCategory, deleteCategory, 
-        addTodoToCategory, deleteTodoFromCategory, 
-        editTodoInCategory, changeCurrentCategory, logCategories 
+        addTodoToCategory, deleteTodoFromCategory, editTodoInCategory,
+        changeCurrentCategory, getCurrentCategoryTodos, logCategories 
     };
 })();
 
