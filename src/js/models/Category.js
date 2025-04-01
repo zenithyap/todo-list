@@ -15,7 +15,7 @@ export default class Category {
     }
 
     get todos() {
-        return this._todos;
+        return this._todos.map(todo => Todo.fromJSON(todo));
     }
 
     set todos(newTodos) {

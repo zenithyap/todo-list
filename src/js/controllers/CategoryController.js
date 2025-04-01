@@ -40,7 +40,7 @@ const categoryController = (function() {
     }
 
     function getCurrentCategoryTodos() {
-        return currentCategory.todos
+        return currentCategory.todos;
     }
 
     function logCategories() {
