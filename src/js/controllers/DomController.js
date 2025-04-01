@@ -8,6 +8,7 @@ const DomController = (function() {
         const projectTitle = document.querySelector("#project-title");
         const sidebarContent = document.querySelector("#sidebar-content");
 
+        const todoContainer = document.querySelector("#todo-container");
         const addTodoButton = document.querySelector("#add-todo-btn");
         const addTodoDialog = document.querySelector("#add-todo-dialog");
         const addTodoForm = document.querySelector("#add-todo-form");
@@ -61,6 +62,13 @@ const DomController = (function() {
             );
             renderContent();
         });
+
+        todoContainer.addEventListener("click", (event) => {
+            if (event.target.textContent === "Delete") {
+                categoryController.deleteTodoFromCategory(event.target.dataset.index);
+                renderContent();
+            }
+        });
     }
 
     function renderSidebar() {
@@ -86,7 +94,7 @@ const DomController = (function() {
         const todoContainer = document.querySelector("#todo-container");
         todoContainer.textContent = "";
 
-        todos.map(todo => {
+        todos.map((todo, index) => {
             const title = document.createElement("h1");
             const description = document.createElement("p");
             const dueDate = document.createElement("p");
@@ -94,6 +102,7 @@ const DomController = (function() {
             const notes = document.createElement("p");
             const status = document.createElement("p");
             const todoCard = document.createElement("div");
+            const deleteTodoButton = document.createElement("button");
 
             title.textContent = todo.title;
             description.textContent = todo.description;
@@ -101,6 +110,8 @@ const DomController = (function() {
             priority.textContent = todo.priority;
             notes.textContent = todo.notes;
             status.textContent = todo.status;
+            deleteTodoButton.textContent = "Delete";
+            deleteTodoButton.dataset.index = index;
 
             todoCard.appendChild(title);
             todoCard.appendChild(description);
@@ -108,6 +119,7 @@ const DomController = (function() {
             todoCard.appendChild(priority);
             todoCard.appendChild(notes);
             todoCard.appendChild(status);
+            todoCard.appendChild(deleteTodoButton);
 
             todoContainer.appendChild(todoCard);
         });
