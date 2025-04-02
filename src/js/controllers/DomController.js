@@ -2,22 +2,16 @@ import categoryController from "./CategoryController";
 
 const DomController = (function() {
     function initialiseEventListeners() {
+        initialiseSidebarEventListeners();        
+        initialiseContentEventListerners();
+    }
+
+    function initialiseSidebarEventListeners() {
         const addCategoryButton = document.querySelector("#add-project-btn");
         const addCategoryDialog = document.querySelector("#add-project-dialog");
         const addCategoryForm = document.querySelector("#add-project-form");
         const projectTitle = document.querySelector("#project-title");
         const sidebarContent = document.querySelector("#sidebar-content");
-
-        const todoContainer = document.querySelector("#todo-container");
-        const addTodoButton = document.querySelector("#add-todo-btn");
-        const addTodoDialog = document.querySelector("#add-todo-dialog");
-        const addTodoForm = document.querySelector("#add-todo-form");
-        const todoTitle = document.querySelector("#todo-title");
-        const todoDescription = document.querySelector("#todo-description");
-        const todoDueDate = document.querySelector("#todo-due-date");
-        const todoPriority = document.querySelector("#todo-priority");
-        const todoNotes = document.querySelector("#todo-notes");
-        const todoStatus = document.querySelector("#todo-status");
 
         addCategoryButton.addEventListener("click", () => {
             addCategoryDialog.showModal();
@@ -50,6 +44,19 @@ const DomController = (function() {
                 renderContent();                
             }
         });
+    }
+
+    function initialiseContentEventListerners() {
+        const todoContainer = document.querySelector("#todo-container");
+        const addTodoButton = document.querySelector("#add-todo-btn");
+        const addTodoDialog = document.querySelector("#add-todo-dialog");
+        const addTodoForm = document.querySelector("#add-todo-form");
+        const todoTitle = document.querySelector("#todo-title");
+        const todoDescription = document.querySelector("#todo-description");
+        const todoDueDate = document.querySelector("#todo-due-date");
+        const todoPriority = document.querySelector("#todo-priority");
+        const todoNotes = document.querySelector("#todo-notes");
+        const todoStatus = document.querySelector("#todo-status");
 
         addTodoButton.addEventListener("click", () => {
             addTodoDialog.showModal();
