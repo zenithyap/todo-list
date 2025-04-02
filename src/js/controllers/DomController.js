@@ -38,8 +38,16 @@ const DomController = (function() {
 
         sidebarContent.addEventListener("click", (event) => {
             if (event.target.textContent === "Delete") {
-                categoryController.deleteCategory(event.target.dataset.index);
+                const index = event.target.dataset.index;
+                categoryController.deleteCategory(index);
+                categoryController.changeCurrentCategory(index - 1);
                 renderSidebar();
+                renderContent();
+            }
+
+            if (event.target.classList.contains("category-btn")) {
+                categoryController.changeCurrentCategory(event.target.dataset.index);
+                renderContent();                
             }
         });
 
@@ -79,10 +87,15 @@ const DomController = (function() {
         categories.map((category, index) => {
             const categoryButton = document.createElement("button");
             const deleteCategoryButton = document.createElement("button");
+
             categoryButton.textContent = category.title;
+            categoryButton.classList.add("category-btn");
+            categoryButton.dataset.index = index;
             deleteCategoryButton.textContent = "Delete";
             deleteCategoryButton.dataset.index = index;
+
             sidebarContent.appendChild(categoryButton);
+
             if (index !== 0) {
                 sidebarContent.appendChild(deleteCategoryButton);
             } 
