@@ -51,12 +51,15 @@ const DomController = (function() {
         const addTodoButton = document.querySelector("#add-todo-btn");
         const addTodoDialog = document.querySelector("#add-todo-dialog");
         const addTodoForm = document.querySelector("#add-todo-form");
-        const todoTitle = document.querySelector("#todo-title");
-        const todoDescription = document.querySelector("#todo-description");
-        const todoDueDate = document.querySelector("#todo-due-date");
-        const todoPriority = document.querySelector("#todo-priority");
-        const todoNotes = document.querySelector("#todo-notes");
-        const todoStatus = document.querySelector("#todo-status");
+
+        const editTodoDialog = document.querySelector("#edit-todo-dialog");
+        const editTodoForm = document.querySelector("#edit-todo-form");
+        const editTodoTitle = document.querySelector("#edit-todo-title");
+        const editTodoDescription = document.querySelector("#edit-todo-description");
+        const editTodoDueDate = document.querySelector("#edit-todo-due-date");
+        const editTodoPriority = document.querySelector("#edit-todo-priority");
+        const editTodoNotes = document.querySelector("#edit-todo-notes");
+        const editTodoStatus = document.querySelector("#edit-todo-status");
 
         addTodoButton.addEventListener("click", () => {
             addTodoDialog.showModal();
@@ -71,6 +74,14 @@ const DomController = (function() {
 
         addTodoForm.addEventListener("submit", (event) => {
             event.preventDefault();
+
+            const todoTitle = document.querySelector("#todo-title");
+            const todoDescription = document.querySelector("#todo-description");
+            const todoDueDate = document.querySelector("#todo-due-date");
+            const todoPriority = document.querySelector("#todo-priority");
+            const todoNotes = document.querySelector("#todo-notes");
+            const todoStatus = document.querySelector("#todo-status");
+
             categoryController.addTodoToCategory(
                 todoTitle.value, todoDescription.value, todoDueDate.value,
                 todoPriority.value, todoNotes.value, todoStatus.value
@@ -83,6 +94,39 @@ const DomController = (function() {
                 categoryController.deleteTodoFromCategory(event.target.dataset.index);
                 renderContent();
             }
+
+            if (event.target.classList.contains("edit-todo-btn")) {
+                const todo = categoryController.getTodoFromCategory(event.target.dataset.index);
+                editTodoForm.dataset.index = event.target.dataset.index;
+
+                editTodoTitle.value = todo.title;
+                editTodoDescription.value = todo.description;
+                editTodoDueDate.value = todo.dueDate;
+                editTodoPriority.value = todo.priority;
+                editTodoNotes.value = todo.notes;
+                editTodoStatus.value = todo.status;
+
+                editTodoDialog.showModal();
+            }
+        });
+
+        editTodoDialog.addEventListener("click", (event) => {
+            if (event.target === editTodoDialog) {
+                event.preventDefault();
+                editTodoDialog.close();
+            }
+        });
+
+        editTodoForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            categoryController.editTodoInCategory(
+                editTodoForm.dataset.index,
+                editTodoTitle.value, editTodoDescription.value, editTodoDueDate.value,
+                editTodoPriority.value, editTodoNotes.value, editTodoStatus.value
+            );
+
+            renderContent();
         });
     }
 
@@ -123,6 +167,7 @@ const DomController = (function() {
             const status = document.createElement("p");
             const todoCard = document.createElement("div");
             const deleteTodoButton = document.createElement("button");
+            const editTodoButton = document.createElement("button");
 
             title.textContent = todo.title;
             description.textContent = todo.description;
@@ -132,6 +177,9 @@ const DomController = (function() {
             status.textContent = todo.status;
             deleteTodoButton.textContent = "Delete";
             deleteTodoButton.dataset.index = index;
+            editTodoButton.textContent = "Edit";
+            editTodoButton.dataset.index = index;
+            editTodoButton.classList.add("edit-todo-btn");
 
             todoCard.appendChild(title);
             todoCard.appendChild(description);
@@ -139,6 +187,7 @@ const DomController = (function() {
             todoCard.appendChild(priority);
             todoCard.appendChild(notes);
             todoCard.appendChild(status);
+            todoCard.appendChild(editTodoButton);
             todoCard.appendChild(deleteTodoButton);
 
             todoContainer.appendChild(todoCard);

@@ -48,10 +48,37 @@
                         <option value="inprogress">In Progress</option>
                         <option value="completed">Completed</option>
                     </select>
-                    <button type="submit">Add</button>
+                    <button type="submit">Save</button>
                 </form>
             </dialog>
-            <div id="todo-container"></div>
+            <dialog id="edit-todo-dialog">
+                <form id="edit-todo-form">
+                    <label for="edit-todo-title">Title</label>
+                    <input type="text" id="edit-todo-title">
+                    <label for="edit-todo-description">Description</label>
+                    <textarea name="edit-todo-description" id="edit-todo-description"></textarea>
+                    <label for="edit-todo-due-date">Due Date</label>
+                    <input type="edit-date" id="edit-todo-due-date">
+                    <label for="edit-priority">Priority</label>
+                    <select name="edit-todo-priority" id="edit-todo-priority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    <label for="edit-todo-notes">Notes</label>
+                    <textarea name="edit-todo-notes" id="edit-todo-notes"></textarea>
+                    <label for="edit-todo-status">Status</label>
+                    <select name="edit-todo-status" id="edit-todo-status">
+                        <option value="todo">To Do</option>
+                        <option value="inprogress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    <button type="submit">Save</button>
+                </form>
+            </dialog>
+            <div id="todo-container">
+                
+            </div>
         </div>
     </div>
 </body>

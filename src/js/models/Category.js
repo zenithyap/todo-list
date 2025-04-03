@@ -30,9 +30,15 @@ export default class Category {
         this._todos.splice(index, 1);
     }
 
-    editTodo(index, updatedFields) {
+    editTodo(index, title, description, dueDate, priority, notes, status) {
         const todo = Todo.fromJSON(this._todos[index]);
-        todo.edit(updatedFields);
+        todo.title = title;
+        todo.description = description;
+        todo.dueDate = dueDate;
+        todo.priority = priority;
+        todo.notes = notes;
+        todo.status = status;
+
         this._todos[index] = todo;
     }
 
