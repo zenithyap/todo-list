@@ -86,6 +86,7 @@ const DomController = (function() {
                 todoTitle.value, todoDescription.value, todoDueDate.value,
                 todoPriority.value, todoNotes.value, todoStatus.value
             );
+            addTodoForm.reset();
             renderContent();
         });
 
