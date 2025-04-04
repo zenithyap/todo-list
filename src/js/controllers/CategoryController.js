@@ -4,7 +4,8 @@ import storageController from "./StorageController";
 
 const categoryController = (function() {
     const categories = storageController.loadCategories();
-    let currentCategory = categories[0];
+    let currentCategoryIndex = 0;
+    let currentCategory = categories[currentCategoryIndex];
 
     function getCategories() {
         return categories;
@@ -38,7 +39,12 @@ const categoryController = (function() {
     }
 
     function changeCurrentCategory(index) {
-        currentCategory = categories[index];
+        currentCategoryIndex = index;
+        currentCategory = categories[currentCategoryIndex];
+    }
+
+    function getCurrentCategoryIndex() {
+        return currentCategoryIndex;
     }
 
     function getCurrentCategoryTodos() {
@@ -58,8 +64,8 @@ const categoryController = (function() {
     return { 
         getCategories, addCategory, deleteCategory, 
         addTodoToCategory, deleteTodoFromCategory, editTodoInCategory,
-        changeCurrentCategory, getCurrentCategoryTodos, getTodoFromCategory, 
-        logCategories 
+        changeCurrentCategory, getCurrentCategoryIndex, getCurrentCategoryTodos, 
+        getTodoFromCategory, logCategories 
     };
 })();
 

@@ -35,13 +35,15 @@ const DomController = (function() {
                 const index = event.target.dataset.index;
                 categoryController.deleteCategory(index);
                 categoryController.changeCurrentCategory(index - 1);
+
                 renderSidebar();
                 renderContent();
             }
 
             if (event.target.classList.contains("category-btn")) {
                 categoryController.changeCurrentCategory(event.target.dataset.index);
-                renderContent();                
+                renderContent();
+                renderSidebar();      
             }
         });
     }
@@ -133,8 +135,10 @@ const DomController = (function() {
 
     function renderSidebar() {
         const categories = categoryController.getCategories();
+        const currentCategoryIndex = parseInt(categoryController.getCurrentCategoryIndex());
         const sidebarContent = document.querySelector("#sidebar-content");
         sidebarContent.textContent = "";
+
 
         categories.map((category, index) => {
             const categoryButton = document.createElement("button");
@@ -143,6 +147,9 @@ const DomController = (function() {
             categoryButton.textContent = category.title;
             categoryButton.classList.add("category-btn");
             categoryButton.dataset.index = index;
+            if (index === currentCategoryIndex) {
+                categoryButton.classList.add("active");
+            }
             deleteCategoryButton.textContent = "Delete";
             deleteCategoryButton.dataset.index = index;
 

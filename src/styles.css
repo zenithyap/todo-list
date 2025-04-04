@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+input, button, textarea, select {
+    font: inherit;
+}
+
 :root {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -17,17 +21,47 @@
 
 #header {
     display: flex;
-    background-color: #FFE5F7;
+    background-color: #FEDDD8;
     align-items: center;
     padding: 24px;
     grid-column: 1 / 3;
 }
 
 #sidebar {
-    border: 2px solid blue;
+    padding: 24px;
 
-    .title {
+    #title {
         display: flex;
+        justify-content: space-between;
+    }
+
+    #add-project-btn {
+        font-weight: bolder;
+        border: none;
+        background-color: white;
+    }
+
+    .category-btn {
+        border: none;
+        border-radius: 6px;
+        text-align: left;
+        background-color: white;
+        padding: 6px 12px;
+    }
+
+    #add-project-btn:hover,
+    .category-btn:hover {
+        background-color: #FEDDD8;
+    }
+
+    .active {
+        background-color: #FEDDD8;
+    }
+
+    #sidebar-content {
+        margin-top: 12px;
+        display: grid;
+        gap: 6px;
     }
 }
 
