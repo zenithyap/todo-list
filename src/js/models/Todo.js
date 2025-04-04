@@ -56,10 +56,6 @@ export default class Todo {
         this._status = newStatus;
     }
 
-    edit(updatedFields) {
-        Object.assign(this, updatedFields);
-    }
-
     static fromJSON(json) {
         return Object.assign(new Todo(), json);
     }

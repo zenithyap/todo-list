@@ -1,9 +1,9 @@
 import Category from "../models/Category";
+import Todo from "../models/Todo";
 import storageController from "./StorageController";
 
 const categoryController = (function() {
-    const categoriesObjects = storageController.loadCategories();
-    const categories = categoriesObjects.map(category => Category.fromJSON(category));
+    const categories = storageController.loadCategories();
     let currentCategory = categories[0];
 
     function getCategories() {
@@ -21,7 +21,8 @@ const categoryController = (function() {
     }
 
     function addTodoToCategory(title, description, dueDate, priority, notes, status) {
-        currentCategory.addTodo(title, description, dueDate, priority, notes, status);
+        const newTodo = new Todo(title, description, dueDate, priority, notes, status);
+        currentCategory.addTodo(newTodo);
         storageController.saveCategories(categories);
     }
 
@@ -31,7 +32,8 @@ const categoryController = (function() {
     }
 
     function editTodoInCategory(index, title, description, dueDate, priority, notes, status) {
-        currentCategory.editTodo(index, title, description, dueDate, priority, notes, status);
+        const editedTodo = new Todo(title, description, dueDate, priority, notes, status);
+        currentCategory.editTodo(index, editedTodo);
         storageController.saveCategories(categories);
     }
 

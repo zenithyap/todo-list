@@ -1,9 +1,7 @@
-import Todo from "./Todo";
-
 export default class Category {
-    constructor(title) {
+    constructor(title, todos=[]) {
         this._title = title;
-        this._todos = [];
+        this._todos = todos;
     }
 
     get title() {
@@ -15,30 +13,22 @@ export default class Category {
     }
 
     get todos() {
-        return this._todos.map(todo => Todo.fromJSON(todo));
+        return this._todos;
     }
 
     set todos(newTodos) {
         this._todos = newTodos;
     }
 
-    addTodo(title, description, dueDate, priority, notes, status) {
-        this._todos.push(new Todo(title, description, dueDate, priority, notes, status));
+    addTodo(todo) {
+        this._todos.push(todo);
     }
 
     deleteTodo(index) {
         this._todos.splice(index, 1);
     }
 
-    editTodo(index, title, description, dueDate, priority, notes, status) {
-        const todo = Todo.fromJSON(this._todos[index]);
-        todo.title = title;
-        todo.description = description;
-        todo.dueDate = dueDate;
-        todo.priority = priority;
-        todo.notes = notes;
-        todo.status = status;
-
+    editTodo(index, todo) {
         this._todos[index] = todo;
     }
 
