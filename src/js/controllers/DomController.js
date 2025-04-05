@@ -31,8 +31,11 @@ const DomController = (function() {
         });
 
         sidebarContent.addEventListener("click", (event) => {
-            if (event.target.textContent === "Delete") {
-                const index = event.target.dataset.index;
+            const deleteButton = event.target.closest(".delete-category-btn");
+            const categoryButton = event.target.closest(".category-btn");
+            
+            if (deleteButton) {
+                const index = deleteButton.dataset.index;
                 categoryController.deleteCategory(index);
                 categoryController.changeCurrentCategory(index - 1);
 
@@ -40,8 +43,8 @@ const DomController = (function() {
                 renderContent();
             }
 
-            if (event.target.classList.contains("category-btn")) {
-                categoryController.changeCurrentCategory(event.target.dataset.index);
+            if (categoryButton) {
+                categoryController.changeCurrentCategory(categoryButton.dataset.index);
                 renderContent();
                 renderSidebar();      
             }
@@ -143,6 +146,7 @@ const DomController = (function() {
         categories.map((category, index) => {
             const categoryButton = document.createElement("button");
             const deleteCategoryButton = document.createElement("button");
+            const categoryRow = document.createElement("div");
 
             categoryButton.textContent = category.title;
             categoryButton.classList.add("category-btn");
@@ -150,14 +154,17 @@ const DomController = (function() {
             if (index === currentCategoryIndex) {
                 categoryButton.classList.add("active");
             }
-            deleteCategoryButton.textContent = "Delete";
+            deleteCategoryButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+            deleteCategoryButton.classList.add("delete-category-btn");
             deleteCategoryButton.dataset.index = index;
 
-            sidebarContent.appendChild(categoryButton);
-
+            categoryRow.classList.add("category-row");
+            categoryRow.appendChild(categoryButton);
             if (index !== 0) {
-                sidebarContent.appendChild(deleteCategoryButton);
-            } 
+                categoryRow.appendChild(deleteCategoryButton);
+            }
+
+            sidebarContent.appendChild(categoryRow);
         });
     }
 

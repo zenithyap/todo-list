@@ -46,21 +46,33 @@ input, button, textarea, select {
         background-color: var(--sidebar-bg);
     }
 
-    .category-btn {
-        border: none;
-        border-radius: 6px;
-        text-align: left;
-        background-color: var(--sidebar-bg);
-        padding: 6px 12px;
+    #add-project-btn:hover,
+    .delete-category-btn:hover {
+        scale: 1.2;
     }
 
-    #add-project-btn:hover,
     .category-btn:hover {
         background-color: #FEDDD8;
     }
-
+    
     .active {
         background-color: #FEDDD8;
+    }
+
+    button  {
+        background-color: var(--sidebar-bg);
+        border: none;
+    }
+
+    .category-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .category-btn {
+        border-radius: 6px;
+        text-align: left;
+        padding: 6px 12px;
     }
 
     #sidebar-content {
