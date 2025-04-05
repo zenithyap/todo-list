@@ -96,14 +96,15 @@ const DomController = (function() {
         });
 
         todoContainer.addEventListener("click", (event) => {
+            const editTodoButton = event.target.closest(".edit-todo-btn");
             if (event.target.textContent === "Delete") {
                 categoryController.deleteTodoFromCategory(event.target.dataset.index);
                 renderContent();
             }
 
-            if (event.target.classList.contains("edit-todo-btn")) {
-                const todo = categoryController.getTodoFromCategory(event.target.dataset.index);
-                editTodoForm.dataset.index = event.target.dataset.index;
+            if (editTodoButton) {
+                const todo = categoryController.getTodoFromCategory(editTodoButton.dataset.index);
+                editTodoForm.dataset.index = editTodoButton.dataset.index;
 
                 editTodoTitle.value = todo.title;
                 editTodoDescription.value = todo.description;
@@ -174,10 +175,9 @@ const DomController = (function() {
         todoContainer.textContent = "";
 
         todos.map((todo, index) => {
-            const title = document.createElement("h1");
+            const title = document.createElement("h3");
             const description = document.createElement("p");
             const dueDate = document.createElement("p");
-            const priority = document.createElement("p");
             const notes = document.createElement("p");
             const status = document.createElement("p");
             const todoCard = document.createElement("div");
@@ -185,21 +185,30 @@ const DomController = (function() {
             const editTodoButton = document.createElement("button");
 
             title.textContent = todo.title;
+
+            const priority = todo.priority;
+            if (priority === "High") {
+                title.classList.add("high-priority");
+            } else if (priority === "Medium") {
+                title.classList.add("medium-priority");
+            } else {
+                title.classList.add("low-priority");
+            }
+
             description.textContent = todo.description;
             dueDate.textContent = todo.dueDate;
-            priority.textContent = todo.priority;
             notes.textContent = todo.notes;
             status.textContent = todo.status;
             deleteTodoButton.textContent = "Delete";
             deleteTodoButton.dataset.index = index;
-            editTodoButton.textContent = "Edit";
+            editTodoButton.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>';
             editTodoButton.dataset.index = index;
             editTodoButton.classList.add("edit-todo-btn");
+            todoCard.classList.add("todo-card");
 
             todoCard.appendChild(title);
             todoCard.appendChild(description);
             todoCard.appendChild(dueDate);
-            todoCard.appendChild(priority);
             todoCard.appendChild(notes);
             todoCard.appendChild(status);
             todoCard.appendChild(editTodoButton);
