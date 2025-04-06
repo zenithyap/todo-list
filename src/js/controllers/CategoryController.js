@@ -1,6 +1,7 @@
 import Category from "../models/Category";
 import Todo from "../models/Todo";
 import storageController from "./StorageController";
+import { compareAsc, isToday, format } from "date-fns";
 
 const categoryController = (function() {
     const categories = storageController.loadCategories();
@@ -55,6 +56,18 @@ const categoryController = (function() {
         return currentCategory.todos[index];
     }
 
+    function getAllTodos() {
+        return categories.flatMap(category => {
+            return category.todos;
+        });
+    }
+
+    function getTodayTodos() {
+        const allTodos = getAllTodos();
+        
+        return allTodos.filter(todo => isToday(todo.dueDate));
+    }
+
     function logCategories() {
         for (const category of categories) {
             category.logCategory();
@@ -65,7 +78,7 @@ const categoryController = (function() {
         getCategories, addCategory, deleteCategory, 
         addTodoToCategory, deleteTodoFromCategory, editTodoInCategory,
         changeCurrentCategory, getCurrentCategoryIndex, getCurrentCategoryTodos, 
-        getTodoFromCategory, logCategories 
+        getTodoFromCategory, getTodayTodos, logCategories 
     };
 })();
 

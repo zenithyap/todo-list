@@ -12,6 +12,7 @@ const DomController = (function() {
         const addCategoryForm = document.querySelector("#add-project-form");
         const projectTitle = document.querySelector("#project-title");
         const sidebarContent = document.querySelector("#sidebar-content");
+        const todayButton = document.querySelector("#today-btn");
 
         addCategoryButton.addEventListener("click", () => {
             addCategoryDialog.showModal();
@@ -48,6 +49,11 @@ const DomController = (function() {
                 renderContent();
                 renderSidebar();      
             }
+        });
+
+        todayButton.addEventListener("click", () => {
+            const todayTodos = categoryController.getTodayTodos();
+            renderContent(todayTodos);
         });
     }
 
@@ -164,8 +170,10 @@ const DomController = (function() {
         });
     }
 
-    function renderContent() {
-        const todos = categoryController.getCurrentCategoryTodos();
+    function renderContent(todos=null) {
+        if (todos === null) {
+            todos = categoryController.getCurrentCategoryTodos();
+        }
         const todoContainer = document.querySelector("#todo-container");
         todoContainer.textContent = "";
 

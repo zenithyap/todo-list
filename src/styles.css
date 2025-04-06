@@ -7,6 +7,8 @@
 :root {
     --sidebar-bg: #FFEBE8;
     --header-bg: #FCC9C5;
+    --button-hover: #FEDDD8;
+
 }
 
 input, button, textarea, select {
@@ -53,11 +55,11 @@ input, button, textarea, select {
     }
 
     .category-btn:hover {
-        background-color: #FEDDD8;
+        background-color: var(--button-hover);
     }
     
     .active {
-        background-color: #FEDDD8;
+        background-color: var(--button-hover);
     }
 
     button  {
@@ -80,6 +82,22 @@ input, button, textarea, select {
         margin-top: 12px;
         display: grid;
         gap: 6px;
+    }
+
+    #dates {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 12px;
+
+        button {
+            text-align: left;
+            font-weight: bold;
+            padding: 6px 12px;
+        }
+
+        button:hover {
+            background-color: var(--button-hover);
+        }
     }
 }
 
