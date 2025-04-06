@@ -60,7 +60,6 @@ const DomController = (function() {
         const editTodoDialog = document.querySelector("#edit-todo-dialog");
         const editTodoForm = document.querySelector("#edit-todo-form");
         const editTodoTitle = document.querySelector("#edit-todo-title");
-        const editTodoDescription = document.querySelector("#edit-todo-description");
         const editTodoDueDate = document.querySelector("#edit-todo-due-date");
         const editTodoPriority = document.querySelector("#edit-todo-priority");
         const editTodoNotes = document.querySelector("#edit-todo-notes");
@@ -80,13 +79,12 @@ const DomController = (function() {
             event.preventDefault();
 
             const todoTitle = document.querySelector("#todo-title");
-            const todoDescription = document.querySelector("#todo-description");
             const todoDueDate = document.querySelector("#todo-due-date");
             const todoPriority = document.querySelector("#todo-priority");
             const todoNotes = document.querySelector("#todo-notes");
 
             categoryController.addTodoToCategory(
-                todoTitle.value, todoDescription.value, todoDueDate.value,
+                todoTitle.value, todoDueDate.value,
                 todoPriority.value, todoNotes.value
             );
             addTodoForm.reset();
@@ -106,7 +104,6 @@ const DomController = (function() {
                 editTodoForm.dataset.index = editTodoButton.dataset.index;
 
                 editTodoTitle.value = todo.title;
-                editTodoDescription.value = todo.description;
                 editTodoDueDate.value = todo.dueDate;
                 editTodoPriority.value = todo.priority;
                 editTodoNotes.value = todo.notes;
@@ -127,7 +124,7 @@ const DomController = (function() {
 
             categoryController.editTodoInCategory(
                 editTodoForm.dataset.index,
-                editTodoTitle.value, editTodoDescription.value, editTodoDueDate.value,
+                editTodoTitle.value, editTodoDueDate.value,
                 editTodoPriority.value, editTodoNotes.value
             );
 
@@ -174,7 +171,6 @@ const DomController = (function() {
 
         todos.map((todo, index) => {
             const title = document.createElement("h3");
-            const description = document.createElement("p");
             const dueDate = document.createElement("p");
             const notes = document.createElement("p");
             const todoCard = document.createElement("div");
@@ -192,7 +188,6 @@ const DomController = (function() {
                 title.classList.add("low-priority");
             }
 
-            description.textContent = todo.description;
             dueDate.textContent = todo.dueDate;
             notes.textContent = todo.notes;
             deleteTodoButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
@@ -204,7 +199,6 @@ const DomController = (function() {
             todoCard.classList.add("todo-card");
 
             todoCard.appendChild(title);
-            todoCard.appendChild(description);
             todoCard.appendChild(dueDate);
             todoCard.appendChild(notes);
             todoCard.appendChild(editTodoButton);
