@@ -126,3 +126,36 @@ input, button, textarea, select {
         scale: 1.2;
     }
 }
+
+#add-todo-dialog,
+#edit-todo-dialog,
+#add-project-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+}
+
+#add-todo-form,
+#edit-todo-form,
+#add-project-form {
+    display: grid;
+    gap: 12px;
+    padding: 24px;
+
+    input,
+    button,
+    select {
+        padding: 6px 12px;
+    }
+
+    button  {
+        background-color: var(--sidebar-bg);
+        border: none;
+    }
+
+    button:hover  {
+        background-color: var(--header-bg);
+    }
+}
