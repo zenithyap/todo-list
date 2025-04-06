@@ -30,6 +30,7 @@ const DomController = (function() {
         addCategoryForm.addEventListener("submit", (event) => {
             event.preventDefault();
             categoryController.addCategory(projectTitle.value);
+            addCategoryDialog.close();
             renderSidebar();
         });
 
@@ -106,6 +107,7 @@ const DomController = (function() {
                 todoTitle.value, todoDueDate.value,
                 todoPriority.value, todoNotes.value
             );
+            addTodoDialog.close()
             addTodoForm.reset();
             renderContent();
         });
@@ -148,7 +150,8 @@ const DomController = (function() {
                 editTodoTitle.value, editTodoDueDate.value,
                 editTodoPriority.value, editTodoNotes.value
             );
-
+            
+            editTodoDialog.close();
             renderContent();
         });
     }
