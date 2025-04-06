@@ -8,7 +8,6 @@
     --sidebar-bg: #FFEBE8;
     --header-bg: #FCC9C5;
     --button-hover: #FEDDD8;
-
 }
 
 input, button, textarea, select {
@@ -103,6 +102,8 @@ input, button, textarea, select {
 
 #content {
     padding: 24px;
+    overflow: auto;
+
     #add-todo-btn {
         border: none;
         background-color: #CFE3E2;
