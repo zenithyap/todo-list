@@ -111,6 +111,10 @@ input, button, textarea, select {
         font-weight: bolder;
     }
 
+    #add-todo-btn:hover {
+        background-color: #8fbebc;
+    }
+
     .high-priority {
         color: #fd6666;
     }
