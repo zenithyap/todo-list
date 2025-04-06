@@ -11,6 +11,8 @@ const DomController = (function() {
         const addCategoryDialog = document.querySelector("#add-project-dialog");
         const addCategoryForm = document.querySelector("#add-project-form");
         const projectTitle = document.querySelector("#project-title");
+        const deleteCategoryDialog = document.querySelector("#delete-project-dialog");
+        const deleteCategoryForm = document.querySelector("#delete-project-form")
         const sidebarContent = document.querySelector("#sidebar-content");
         const todayButton = document.querySelector("#today-btn");
         const weekButton = document.querySelector("#week-btn");
@@ -35,17 +37,29 @@ const DomController = (function() {
             renderSidebar();
         });
 
+        deleteCategoryDialog.addEventListener("click", (event) => {
+            if (event.target === deleteCategoryDialog) {
+                event.preventDefault();
+                deleteCategoryDialog.close();
+            }
+        });
+
+        deleteCategoryForm.addEventListener("submit", (event) => {
+            const index = deleteCategoryForm.dataset.index;
+            categoryController.deleteCategory(index);
+            categoryController.changeCurrentCategory(index - 1);
+
+            renderSidebar();
+            renderContent();
+        });
+
         sidebarContent.addEventListener("click", (event) => {
             const deleteButton = event.target.closest(".delete-category-btn");
             const categoryButton = event.target.closest(".category-btn");
-            
-            if (deleteButton) {
-                const index = deleteButton.dataset.index;
-                categoryController.deleteCategory(index);
-                categoryController.changeCurrentCategory(index - 1);
 
-                renderSidebar();
-                renderContent();
+            if (deleteButton) {
+                deleteCategoryForm.dataset.index = deleteButton.dataset.index;
+                deleteCategoryDialog.showModal();
             }
 
             if (categoryButton) {
