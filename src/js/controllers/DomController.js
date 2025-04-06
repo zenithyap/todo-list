@@ -31,6 +31,7 @@ const DomController = (function() {
             event.preventDefault();
             categoryController.addCategory(projectTitle.value);
             addCategoryDialog.close();
+            addCategoryForm.reset();
             renderSidebar();
         });
 
