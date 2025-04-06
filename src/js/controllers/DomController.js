@@ -13,6 +13,8 @@ const DomController = (function() {
         const projectTitle = document.querySelector("#project-title");
         const sidebarContent = document.querySelector("#sidebar-content");
         const todayButton = document.querySelector("#today-btn");
+        const weekButton = document.querySelector("#week-btn");
+        const monthButton = document.querySelector("#month-btn");
 
         addCategoryButton.addEventListener("click", () => {
             addCategoryDialog.showModal();
@@ -55,6 +57,16 @@ const DomController = (function() {
             const todayTodos = categoryController.getTodayTodos();
             renderContent(todayTodos);
         });
+
+        weekButton.addEventListener("click", () => {
+            const weekTodos = categoryController.getWeekTodos();
+            renderContent(weekTodos);
+        });
+
+        monthButton.addEventListener("click", () => {
+            const monthTodos = categoryController.getMonthTodos();
+            renderContent(monthTodos);
+        })
     }
 
     function initialiseContentEventListerners() {

@@ -1,7 +1,7 @@
 import Category from "../models/Category";
 import Todo from "../models/Todo";
 import storageController from "./StorageController";
-import { compareAsc, isToday, format } from "date-fns";
+import { compareAsc, isToday, endOfWeek, endOfMonth } from "date-fns";
 
 const categoryController = (function() {
     const categories = storageController.loadCategories();
@@ -69,6 +69,20 @@ const categoryController = (function() {
         return allTodos.filter(todo => isToday(todo.dueDate));
     }
 
+    function getWeekTodos() {
+        const today = new Date();
+        const allTodos = getAllTodos();
+
+        return allTodos.filter(todo => compareAsc(todo.dueDate, endOfWeek(today, {weekStartsOn: 1})) === -1);
+    }
+
+    function getMonthTodos() {
+        const today = new Date();
+        const allTodos = getAllTodos();
+
+        return allTodos.filter(todo => compareAsc(todo.dueDate, endOfMonth(today)) === -1);
+    }
+
     function logCategories() {
         for (const category of categories) {
             category.logCategory();
@@ -79,7 +93,7 @@ const categoryController = (function() {
         getCategories, addCategory, deleteCategory, 
         addTodoToCategory, deleteTodoFromCategory, editTodoInCategory,
         changeCurrentCategory, getCurrentCategoryIndex, getCurrentCategoryTodos, 
-        getTodoFromCategory, getTodayTodos, logCategories 
+        getTodoFromCategory, getTodayTodos, getWeekTodos, getMonthTodos, logCategories 
     };
 })();
 
