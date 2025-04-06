@@ -1,9 +1,10 @@
 export default class Todo {
-    constructor(title, dueDate, priority, notes) {
+    constructor(title, dueDate, priority, notes, category) {
         this._title = title;
         this._dueDate = dueDate;
         this._priority = priority;
         this._notes = notes;
+        this._category = category;
     }
 
     get title() {
@@ -36,6 +37,14 @@ export default class Todo {
 
     set notes(newNotes) {
         this._notes = newNotes;
+    }
+
+    get category() {
+        return this._category;
+    }
+
+    set category(newCategory) {
+        this._category = newCategory;
     }
 
     static fromJSON(json) {

@@ -23,13 +23,14 @@ const categoryController = (function() {
     }
 
     function addTodoToCategory(title, dueDate, priority, notes) {
-        const newTodo = new Todo(title, dueDate, priority, notes);
+        const newTodo = new Todo(title, dueDate, priority, notes, currentCategoryIndex);
         currentCategory.addTodo(newTodo);
         storageController.saveCategories(categories);
     }
 
-    function deleteTodoFromCategory(index) {
-        currentCategory.deleteTodo(index);
+    function deleteTodoFromCategory(index, categoryIndex) {
+        console.log(categories, categoryIndex);
+        categories[categoryIndex].deleteTodo(index);
         storageController.saveCategories(categories);
     }
 

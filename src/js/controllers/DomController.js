@@ -82,6 +82,7 @@ const DomController = (function() {
         });
 
         addTodoForm.addEventListener("submit", (event) => {
+            const currentCategory = categoryController.currentCategory;
             event.preventDefault();
 
             const todoTitle = document.querySelector("#todo-title");
@@ -101,7 +102,9 @@ const DomController = (function() {
             const editTodoButton = event.target.closest(".edit-todo-btn");
             const deleteTodoButton = event.target.closest(".delete-todo-btn");
             if (deleteTodoButton) {
-                categoryController.deleteTodoFromCategory(deleteTodoButton.dataset.index);
+                categoryController.deleteTodoFromCategory(
+                    deleteTodoButton.dataset.index, deleteTodoButton.dataset.categoryIndex
+                );
                 renderContent();
             }
 
@@ -201,6 +204,7 @@ const DomController = (function() {
             deleteTodoButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
             deleteTodoButton.classList.add("delete-todo-btn");
             deleteTodoButton.dataset.index = index;
+            deleteTodoButton.dataset.categoryIndex = todo.category;
             editTodoButton.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>';
             editTodoButton.dataset.index = index;
             editTodoButton.classList.add("edit-todo-btn");
