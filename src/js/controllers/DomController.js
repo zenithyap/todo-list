@@ -95,8 +95,9 @@ const DomController = (function() {
 
         todoContainer.addEventListener("click", (event) => {
             const editTodoButton = event.target.closest(".edit-todo-btn");
-            if (event.target.textContent === "Delete") {
-                categoryController.deleteTodoFromCategory(event.target.dataset.index);
+            const deleteTodoButton = event.target.closest(".delete-todo-btn");
+            if (deleteTodoButton) {
+                categoryController.deleteTodoFromCategory(deleteTodoButton.dataset.index);
                 renderContent();
             }
 
@@ -194,7 +195,8 @@ const DomController = (function() {
             description.textContent = todo.description;
             dueDate.textContent = todo.dueDate;
             notes.textContent = todo.notes;
-            deleteTodoButton.textContent = "Delete";
+            deleteTodoButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+            deleteTodoButton.classList.add("delete-todo-btn");
             deleteTodoButton.dataset.index = index;
             editTodoButton.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>';
             editTodoButton.dataset.index = index;

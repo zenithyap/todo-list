@@ -110,13 +110,19 @@ input, button, textarea, select {
         border-bottom: 1px solid #CFE3E2;
     }
 
-    .edit-todo-btn {
+    .edit-todo-btn,
+    .delete-todo-btn {
         background-color: #FFF;
         border: none;
         margin-top: 12px;
     }
 
-    .edit-todo-btn:hover {
+    .delete-todo-btn {
+        margin-left: 12px;
+    }
+
+    .edit-todo-btn:hover,
+    .delete-todo-btn:hover {
         scale: 1.2;
     }
 }
