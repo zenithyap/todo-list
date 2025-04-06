@@ -64,7 +64,6 @@ const DomController = (function() {
         const editTodoDueDate = document.querySelector("#edit-todo-due-date");
         const editTodoPriority = document.querySelector("#edit-todo-priority");
         const editTodoNotes = document.querySelector("#edit-todo-notes");
-        const editTodoStatus = document.querySelector("#edit-todo-status");
 
         addTodoButton.addEventListener("click", () => {
             addTodoDialog.showModal();
@@ -85,11 +84,10 @@ const DomController = (function() {
             const todoDueDate = document.querySelector("#todo-due-date");
             const todoPriority = document.querySelector("#todo-priority");
             const todoNotes = document.querySelector("#todo-notes");
-            const todoStatus = document.querySelector("#todo-status");
 
             categoryController.addTodoToCategory(
                 todoTitle.value, todoDescription.value, todoDueDate.value,
-                todoPriority.value, todoNotes.value, todoStatus.value
+                todoPriority.value, todoNotes.value
             );
             addTodoForm.reset();
             renderContent();
@@ -111,7 +109,6 @@ const DomController = (function() {
                 editTodoDueDate.value = todo.dueDate;
                 editTodoPriority.value = todo.priority;
                 editTodoNotes.value = todo.notes;
-                editTodoStatus.value = todo.status;
 
                 editTodoDialog.showModal();
             }
@@ -130,7 +127,7 @@ const DomController = (function() {
             categoryController.editTodoInCategory(
                 editTodoForm.dataset.index,
                 editTodoTitle.value, editTodoDescription.value, editTodoDueDate.value,
-                editTodoPriority.value, editTodoNotes.value, editTodoStatus.value
+                editTodoPriority.value, editTodoNotes.value
             );
 
             renderContent();
@@ -179,7 +176,6 @@ const DomController = (function() {
             const description = document.createElement("p");
             const dueDate = document.createElement("p");
             const notes = document.createElement("p");
-            const status = document.createElement("p");
             const todoCard = document.createElement("div");
             const deleteTodoButton = document.createElement("button");
             const editTodoButton = document.createElement("button");
@@ -198,7 +194,6 @@ const DomController = (function() {
             description.textContent = todo.description;
             dueDate.textContent = todo.dueDate;
             notes.textContent = todo.notes;
-            status.textContent = todo.status;
             deleteTodoButton.textContent = "Delete";
             deleteTodoButton.dataset.index = index;
             editTodoButton.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>';
@@ -210,7 +205,6 @@ const DomController = (function() {
             todoCard.appendChild(description);
             todoCard.appendChild(dueDate);
             todoCard.appendChild(notes);
-            todoCard.appendChild(status);
             todoCard.appendChild(editTodoButton);
             todoCard.appendChild(deleteTodoButton);
 

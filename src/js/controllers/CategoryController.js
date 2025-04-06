@@ -21,8 +21,8 @@ const categoryController = (function() {
         storageController.saveCategories(categories);
     }
 
-    function addTodoToCategory(title, description, dueDate, priority, notes, status) {
-        const newTodo = new Todo(title, description, dueDate, priority, notes, status);
+    function addTodoToCategory(title, description, dueDate, priority, notes) {
+        const newTodo = new Todo(title, description, dueDate, priority, notes);
         currentCategory.addTodo(newTodo);
         storageController.saveCategories(categories);
     }
@@ -32,8 +32,8 @@ const categoryController = (function() {
         storageController.saveCategories(categories);
     }
 
-    function editTodoInCategory(index, title, description, dueDate, priority, notes, status) {
-        const editedTodo = new Todo(title, description, dueDate, priority, notes, status);
+    function editTodoInCategory(index, title, description, dueDate, priority, notes) {
+        const editedTodo = new Todo(title, description, dueDate, priority, notes);
         currentCategory.editTodo(index, editedTodo);
         storageController.saveCategories(categories);
     }
