@@ -164,8 +164,7 @@ input, button, textarea, select {
 
     input,
     button,
-    select,
-    textarea {
+    select {
         padding: 6px 12px;
     }
 
