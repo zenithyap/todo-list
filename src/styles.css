@@ -80,6 +80,10 @@ input, button, textarea, select {
         border-radius: 6px;
         text-align: left;
         padding: 6px 12px;
+        max-width: 20ch;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     #sidebar-content {
