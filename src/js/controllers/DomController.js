@@ -55,6 +55,8 @@ const DomController = (function() {
         });
 
         deleteCategoryForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
             const index = deleteCategoryForm.dataset.index;
             categoryController.deleteCategory(index);
             categoryController.changeCurrentCategory(index - 1);
@@ -121,7 +123,6 @@ const DomController = (function() {
         });
 
         addTodoForm.addEventListener("submit", (event) => {
-            const currentCategory = categoryController.currentCategory;
             event.preventDefault();
 
             const todoTitle = document.querySelector("#todo-title");
@@ -149,8 +150,12 @@ const DomController = (function() {
             }
 
             if (editTodoButton) {
-                const todo = categoryController.getTodoFromCategory(editTodoButton.dataset.index);
-                editTodoForm.dataset.index = editTodoButton.dataset.index;
+                const todo = categoryController.getTodoFromCategory(
+                    editTodoButton.dataset.todoId,
+                    editTodoButton.dataset.categoryIndex
+                );
+                editTodoForm.dataset.todoId = editTodoButton.dataset.todoId;
+                editTodoForm.dataset.categoryIndex = editTodoButton.dataset.categoryIndex;
 
                 editTodoTitle.value = todo.title;
                 editTodoDueDate.value = todo.dueDate;
@@ -172,7 +177,8 @@ const DomController = (function() {
             event.preventDefault();
 
             categoryController.editTodoInCategory(
-                editTodoForm.dataset.index,
+                editTodoForm.dataset.todoId,
+                editTodoForm.dataset.categoryIndex,
                 editTodoTitle.value, editTodoDueDate.value,
                 editTodoPriority.value, editTodoNotes.value
             );
@@ -231,7 +237,7 @@ const DomController = (function() {
             currentProjectTitle.textContent = categoryController.getCurrentCategory();
         }
 
-        todos.map((todo, index) => {
+        todos.map(todo => {
             const title = document.createElement("h3");
             const dueDate = document.createElement("p");
             const notes = document.createElement("p");
@@ -254,10 +260,11 @@ const DomController = (function() {
             notes.textContent = todo.notes;
             deleteTodoButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
             deleteTodoButton.classList.add("delete-todo-btn");
-            deleteTodoButton.dataset.index = index;
+            deleteTodoButton.dataset.todoId = todo.id;
             deleteTodoButton.dataset.categoryIndex = todo.category;
             editTodoButton.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>';
-            editTodoButton.dataset.index = index;
+            editTodoButton.dataset.todoId = todo.id;
+            editTodoButton.dataset.categoryIndex = todo.category;
             editTodoButton.classList.add("edit-todo-btn");
             todoCard.classList.add("todo-card");
 

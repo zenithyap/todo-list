@@ -28,15 +28,14 @@ const categoryController = (function() {
         storageController.saveCategories(categories);
     }
 
-    function deleteTodoFromCategory(index, categoryIndex) {
-        console.log(categories, categoryIndex);
-        categories[categoryIndex].deleteTodo(index);
+    function deleteTodoFromCategory(id, categoryIndex) {
+        categories[categoryIndex].deleteTodo(id);
         storageController.saveCategories(categories);
     }
 
-    function editTodoInCategory(index, title, dueDate, priority, notes) {
-        const editedTodo = new Todo(title, dueDate, priority, notes);
-        currentCategory.editTodo(index, editedTodo);
+    function editTodoInCategory(id, categoryIndex, title, dueDate, priority, notes) {
+        const editedTodo = new Todo(title, dueDate, priority, notes, categoryIndex);
+        categories[categoryIndex].editTodo(id, editedTodo);
         storageController.saveCategories(categories);
     }
 
@@ -57,8 +56,8 @@ const categoryController = (function() {
         return currentCategory.todos;
     }
 
-    function getTodoFromCategory(index) {
-        return currentCategory.todos[index];
+    function getTodoFromCategory(id, categoryIndex) {
+        return categories[categoryIndex].getTodo(id);
     }
 
     function getAllTodos() {

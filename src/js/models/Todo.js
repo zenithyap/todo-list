@@ -1,10 +1,15 @@
 export default class Todo {
     constructor(title, dueDate, priority, notes, category) {
+        this._id = Date.now().toString();
         this._title = title;
         this._dueDate = dueDate;
         this._priority = priority;
         this._notes = notes;
         this._category = category;
+    }
+
+    get id() {
+        return this._id;
     }
 
     get title() {
@@ -41,10 +46,6 @@ export default class Todo {
 
     get category() {
         return this._category;
-    }
-
-    set category(newCategory) {
-        this._category = newCategory;
     }
 
     static fromJSON(json) {

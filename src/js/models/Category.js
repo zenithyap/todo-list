@@ -24,12 +24,23 @@ export default class Category {
         this._todos.push(todo);
     }
 
-    deleteTodo(index) {
+    getIndexFromId(id) {
+        return this._todos.findIndex(todo => todo.id === id);
+    }
+
+    deleteTodo(id) {
+        const index = this.getIndexFromId(id);
         this._todos.splice(index, 1);
     }
 
-    editTodo(index, todo) {
+    editTodo(id, todo) {
+        const index = this.getIndexFromId(id);
         this._todos[index] = todo;
+    }
+
+    getTodo(id) {
+        const index = this.getIndexFromId(id);
+        return this._todos[index];
     }
 
     logCategory() {
