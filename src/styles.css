@@ -118,6 +118,7 @@ input, button, textarea, select {
         background-color: #CFE3E2;
         padding: 6px 12px;
         border-radius: 6px;
+        margin-top: 12px;
         font-weight: bolder;
     }
 

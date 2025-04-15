@@ -49,6 +49,10 @@ const categoryController = (function() {
         return currentCategoryIndex;
     }
 
+    function getCurrentCategory() {
+        return categories[currentCategoryIndex].title;
+    }
+
     function getCurrentCategoryTodos() {
         return currentCategory.todos;
     }
@@ -92,8 +96,9 @@ const categoryController = (function() {
     return { 
         getCategories, addCategory, deleteCategory, 
         addTodoToCategory, deleteTodoFromCategory, editTodoInCategory,
-        changeCurrentCategory, getCurrentCategoryIndex, getCurrentCategoryTodos, 
-        getTodoFromCategory, getTodayTodos, getWeekTodos, getMonthTodos, logCategories 
+        changeCurrentCategory, getCurrentCategoryIndex, getCurrentCategory, 
+        getCurrentCategoryTodos, getTodoFromCategory, getTodayTodos, 
+        getWeekTodos, getMonthTodos, logCategories 
     };
 })();
 

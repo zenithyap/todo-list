@@ -64,6 +64,7 @@ const DomController = (function() {
 
             if (categoryButton) {
                 categoryController.changeCurrentCategory(categoryButton.dataset.index);
+                
                 renderContent();
                 renderSidebar();      
             }
@@ -208,7 +209,9 @@ const DomController = (function() {
             todos = categoryController.getCurrentCategoryTodos();
         }
         const todoContainer = document.querySelector("#todo-container");
+        const currentProjectTitle = document.querySelector("#current-project-title");
         todoContainer.textContent = "";
+        currentProjectTitle.textContent = categoryController.getCurrentCategory();
 
         todos.map((todo, index) => {
             const title = document.createElement("h3");
