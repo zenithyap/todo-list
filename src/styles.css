@@ -20,7 +20,7 @@ input, button, textarea, select {
 
 #main-container {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: minmax(1fr, 200px) 4fr;
     grid-template-rows: 1fr 7fr;
     height: 100vh;
 }

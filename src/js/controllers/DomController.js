@@ -54,7 +54,7 @@ const DomController = (function() {
         });
 
         sidebarContent.addEventListener("click", (event) => {
-            const deleteButton = event.target.closest(".delete-category-btn");
+            const deleteButton = event.target.closest(".delete-project-btn");
             const categoryButton = event.target.closest(".category-btn");
 
             if (deleteButton) {
