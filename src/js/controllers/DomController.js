@@ -2,8 +2,18 @@ import categoryController from "./CategoryController";
 
 const DomController = (function() {
     function initialiseEventListeners() {
+        initialiseHeaderEventListeners();
         initialiseSidebarEventListeners();        
         initialiseContentEventListerners();
+    }
+
+    function initialiseHeaderEventListeners() {
+        const dropdown = document.querySelector("#dropdown");
+        const sidebar = document.querySelector("#sidebar");
+
+        dropdown.addEventListener("change", () => {
+            sidebar.style.display = dropdown.checked ? "block" : "none";
+        })
     }
 
     function initialiseSidebarEventListeners() {
