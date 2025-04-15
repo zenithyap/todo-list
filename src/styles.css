@@ -45,11 +45,16 @@ input, button, textarea, select {
     #add-project-btn {
         font-weight: bolder;
         border: none;
-        background-color: var(--sidebar-bg);
+        background: transparent;
+        margin-left: 24px;
+    }
+    
+    .delete-project-btn {
+        margin-left: 24px;
     }
 
     #add-project-btn:hover,
-    .delete-category-btn:hover {
+    .delete-project-btn:hover {
         scale: 1.2;
     }
 

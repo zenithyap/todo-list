@@ -190,7 +190,7 @@ const DomController = (function() {
                 categoryButton.classList.add("active");
             }
             deleteCategoryButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-            deleteCategoryButton.classList.add("delete-category-btn");
+            deleteCategoryButton.classList.add("delete-project-btn");
             deleteCategoryButton.dataset.index = index;
 
             categoryRow.classList.add("category-row");
