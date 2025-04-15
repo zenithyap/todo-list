@@ -82,17 +82,17 @@ const DomController = (function() {
 
         todayButton.addEventListener("click", () => {
             const todayTodos = categoryController.getTodayTodos();
-            renderContent(todayTodos);
+            renderContent(todayTodos, "Due Today");
         });
 
         weekButton.addEventListener("click", () => {
             const weekTodos = categoryController.getWeekTodos();
-            renderContent(weekTodos);
+            renderContent(weekTodos, "Due In A Week");
         });
 
         monthButton.addEventListener("click", () => {
             const monthTodos = categoryController.getMonthTodos();
-            renderContent(monthTodos);
+            renderContent(monthTodos, "Due In A Month");
         })
     }
 
@@ -214,14 +214,22 @@ const DomController = (function() {
         });
     }
 
-    function renderContent(todos=null) {
+    function renderContent(todos=null, isViewDue=null) {
         if (todos === null) {
             todos = categoryController.getCurrentCategoryTodos();
         }
         const todoContainer = document.querySelector("#todo-container");
-        const currentProjectTitle = document.querySelector("#current-project-title");
         todoContainer.textContent = "";
-        currentProjectTitle.textContent = categoryController.getCurrentCategory();
+        
+        const currentProjectTitle = document.querySelector("#current-project-title");
+        const addTodoButton = document.querySelector("#add-todo-btn");
+        if (isViewDue) {
+            addTodoButton.style.display = "none";
+            currentProjectTitle.textContent = isViewDue;
+        } else {
+            addTodoButton.style.display = "block";
+            currentProjectTitle.textContent = categoryController.getCurrentCategory();
+        }
 
         todos.map((todo, index) => {
             const title = document.createElement("h3");
