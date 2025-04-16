@@ -84,17 +84,17 @@ const DomController = (function() {
 
         todayButton.addEventListener("click", () => {
             const todayTodos = categoryController.getTodayTodos();
-            renderContent(todayTodos, "Due Today");
+            renderContent(todayTodos, "Due today");
         });
 
         weekButton.addEventListener("click", () => {
             const weekTodos = categoryController.getWeekTodos();
-            renderContent(weekTodos, "Due In A Week");
+            renderContent(weekTodos, "Due this week");
         });
 
         monthButton.addEventListener("click", () => {
             const monthTodos = categoryController.getMonthTodos();
-            renderContent(monthTodos, "Due In A Month");
+            renderContent(monthTodos, "Due this month");
         })
     }
 
