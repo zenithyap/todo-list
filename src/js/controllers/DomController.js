@@ -54,9 +54,7 @@ const DomController = (function() {
             }
         });
 
-        deleteCategoryForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-
+        deleteCategoryForm.addEventListener("submit", () => {
             const index = deleteCategoryForm.dataset.index;
             categoryController.deleteCategory(index);
             categoryController.changeCurrentCategory(index - 1);
