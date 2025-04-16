@@ -20,10 +20,13 @@ input, button, textarea, select {
 }
 
 #main-container {
+    height: 100vh;
+}
+
+#body-container {
     display: grid;
     grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr 7fr;
-    height: 100vh;
+    height: calc(100vh - 100px);
 }
 
 #header {
